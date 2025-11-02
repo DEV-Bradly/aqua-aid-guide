@@ -3,9 +3,16 @@
 ## Project info
 
 **URL**: https://lovable.dev/projects/16202a36-0cf4-48ac-aeae-94bc5635f864
+
+
+
 **Pitch deck of the project : **https://www.canva.com/design/DAG3ldeBt6g/PTYeB2qJZf7Cra5cPl6l4Q/edit?utm_content=DAG3ldeBt6g&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton**
 ## THIS READMETO BE UPDATED
 Follow these steps:
+
+
+
+https://www.canva.com/design/DAG3ljCt-pk/ag-_T9HSXweXeXS5b1tf9g/edit?utm_content=DAG3ljCt-pk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 ```sh
 # Step 1: Clone the repository using the project's Git URL.
