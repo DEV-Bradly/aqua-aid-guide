@@ -14,13 +14,13 @@ const Footer = () => {
           
           <div className="flex items-center gap-6">
             <a
-              href="https://github.com/Benmwas"
+              href="https://github.com/DEV-Bradly"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
             >
               <Github className="h-5 w-5" />
-              <span>Benmwas</span>
+              <span>DEV-Bradly</span>
             </a>
           </div>
         </div>

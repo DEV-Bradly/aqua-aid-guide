@@ -22,13 +22,13 @@ serve(async (req) => {
     let billInfo = '';
     if (previousReading !== undefined && currentReading !== undefined) {
       const unitsUsed = currentReading - previousReading;
-      const totalCost = unitsUsed * 250; // 250 shillings per unit
-      billInfo = `\n\nCurrent calculation: Previous reading: ${previousReading} units, Current reading: ${currentReading} units, Units used: ${unitsUsed} units, Total bill: ${totalCost} shillings (@ 250 shillings/unit)`;
+      const totalCost = unitsUsed * 200; // 200 shillings per unit
+      billInfo = `\n\nCurrent calculation: Previous reading: ${previousReading} units, Current reading: ${currentReading} units, Units used: ${unitsUsed} units, Total bill: ${totalCost} shillings (@ 200 shillings/unit)`;
     }
 
     const systemPrompt = `You are a water conservation and safety advisor for SDG 6 (Clean Water & Sanitation). Your role is to:
 
-1. **Water Bill Predictions**: When users provide previous and current meter readings, calculate their bill at 250 shillings per unit and explain the calculation clearly.
+1. **Water Bill Predictions**: When users provide previous and current meter readings, calculate their bill at 200 shillings per unit and explain the calculation clearly.
 
 2. **Conservation Advice**: Provide practical, actionable tips to reduce water consumption and avoid shortages. Include:
    - Daily habits to save water (shorter showers, fixing leaks, turning off taps)

@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import WaterQuality from "./pages/WaterQuality";
 import Education from "./pages/Education";
 import WaterUsage from "./pages/WaterUsage";
+import Chatbot from "./pages/Chatbot";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 import Navigation from "./components/Navigation";
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/water-quality" element={<WaterQuality />} />
           <Route path="/education" element={<Education />} />
           <Route path="/water-usage" element={<WaterUsage />} />
+          <Route path="/chatbot" element={<Chatbot />} />
           <Route path="/auth" element={<Auth />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
