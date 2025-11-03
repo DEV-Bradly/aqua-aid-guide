@@ -10,6 +10,8 @@ import WaterUsage from "./pages/WaterUsage";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
+import WaterAdvisorChat from "./components/WaterAdvisorChat";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +31,8 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <Footer />
+        <WaterAdvisorChat />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
