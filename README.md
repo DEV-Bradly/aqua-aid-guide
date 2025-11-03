@@ -67,9 +67,13 @@ Tool	Purpose
 ## 🚀 Future Roadmap ##
 Timeline	Goal
 Q1 2025	IoT water sensor integration
-Q2 2025	Mobile PWA version
+Q2 2025	Mobile PWA version                                                                    
 Q3 2025	Regional dashboard for analytics
 2026	AI-driven water quality alerts
+
+
+##  QR CODE  SCAN  ##
+![sdg QRcode](https://github.com/user-attachments/assets/15c5f19d-ec8a-4434-b5fd-e912676ec3ea)
 
 
  ## 🧭 How It Works ##
@@ -108,8 +112,7 @@ npm run dev
 ## SAMPLE OF JPNG PROJECT  ##
  ** DASHBOARD **
  
- ![Dashbord sdg6](https://github.com/user-attachments/assets/c15d24b5-a389-4676-880e-086540f32648)  
-
+ ![Dashbord sdg6](https://github.com/user-attachments/assets/c15d24b5-a389-4676-880e-086540f32648)     ## 
 
  
 FIND ME ON GITHUB
