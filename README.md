@@ -4,7 +4,7 @@ Aqua Aid Guide is a web-based platform designed to promote awareness, monitor wa
 
 
 LIVE🔴🚨
-## 🔗 Live Demo:  https://aqua-aid-guide-7ldw2s564-bradly-kiptanui-s-projects.vercel.app/ ##
+## 🔗 Live Demo:  https://aqua-aid-guide.vercel.app/ ##
 
 LIVE🔴LIVE🔴
 🔗 Live Pitch Deck:
