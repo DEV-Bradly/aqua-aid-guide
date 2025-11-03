@@ -57,10 +57,24 @@ const Chatbot = () => {
       setMessages((prev) => [...prev, assistantMessage]);
     } catch (error) {
       console.error('Chat error:', error);
+      
+      let errorMessage = 'Failed to get response';
+      
+      if (error instanceof Error) {
+        if (error.message.includes('Rate limits exceeded')) {
+          errorMessage = 'AI rate limit reached. Please wait a moment and try again, or add credits to your workspace in Settings → Usage.';
+        } else if (error.message.includes('Payment required')) {
+          errorMessage = 'AI credits depleted. Please add credits to your workspace in Settings → Usage to continue using the chatbot.';
+        } else {
+          errorMessage = error.message;
+        }
+      }
+      
       toast({
         title: 'Error',
-        description: error instanceof Error ? error.message : 'Failed to get response',
+        description: errorMessage,
         variant: 'destructive',
+        duration: 5000,
       });
     } finally {
       setLoading(false);
