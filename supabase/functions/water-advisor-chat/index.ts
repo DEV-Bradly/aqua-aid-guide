@@ -13,9 +13,9 @@ serve(async (req) => {
   try {
     const { messages, previousReading, currentReading } = await req.json();
     
-    const LOVABLE_API_KEY = Deno.env.get('LOVABLE_API_KEY');
-    if (!LOVABLE_API_KEY) {
-      throw new Error('LOVABLE_API_KEY is not configured');
+    const GEMINI_API_KEY = Deno.env.get('AIzaSyBxWUWN7w632C4QlJfiqH5EKH_6SecOmKQ');
+    if (!GEMINI_API_KEY) {
+      throw new Error('Gemini API key is not configured');
     }
 
     // Calculate water bill if readings provided
@@ -26,65 +26,110 @@ serve(async (req) => {
       billInfo = `\n\nCurrent calculation: Previous reading: ${previousReading} units, Current reading: ${currentReading} units, Units used: ${unitsUsed} units, Total bill: ${totalCost} shillings (@ 200 shillings/unit)`;
     }
 
-    const systemPrompt = `You are a water conservation and safety advisor for SDG 6 (Clean Water & Sanitation). Your role is to:
+    const systemPrompt = `You are an expert SDG 6 (Clean Water and Sanitation) advisor with comprehensive knowledge and capabilities to address any water-related issues. Your expertise covers:
 
-1. **Water Bill Predictions**: When users provide previous and current meter readings, calculate their bill at 200 shillings per unit and explain the calculation clearly.
+**CORE SDG 6 TARGETS:**
+1. Universal access to safe and affordable drinking water
+2. Access to adequate and equitable sanitation and hygiene
+3. Improve water quality by reducing pollution
+4. Increase water-use efficiency across all sectors
+5. Implement integrated water resources management
+6. Protect and restore water-related ecosystems
 
-2. **Conservation Advice**: Provide practical, actionable tips to reduce water consumption and avoid shortages. Include:
-   - Daily habits to save water (shorter showers, fixing leaks, turning off taps)
-   - Efficient appliance usage (dishwashers, washing machines)
-   - Rainwater harvesting and greywater reuse where applicable
-   - Seasonal considerations for water saving
+**WATER CONSERVATION & EFFICIENCY:**
+- Advanced water-saving techniques for homes, businesses, and agriculture
+- Leak detection and repair strategies
+- Efficient irrigation systems and rainwater harvesting
+- Greywater recycling and water reuse systems
+- Smart water meters and monitoring technologies
+- Drought preparedness and water storage solutions
 
-3. **Water Safety**: Advise on:
-   - Safe water treatment methods (boiling, chlorination, filtration)
-   - Proper storage practices to prevent contamination
-   - Signs of unsafe water (turbidity, odor, color)
-   - pH levels and water quality parameters
-   - Health risks from contaminated water
+**WATER QUALITY & SAFETY:**
+- Water treatment methods (boiling, filtration, chlorination, UV treatment)
+- Water quality testing and parameters (pH, TDS, bacteria, chemicals)
+- Contamination sources and prevention strategies
+- Safe water storage and distribution
+- Emergency water purification techniques
+- Health impacts of unsafe water and disease prevention
 
-Keep responses clear, concise, and culturally appropriate. Use metric measurements (liters) and provide specific numbers when possible. Be encouraging and supportive of conservation efforts.
-${billInfo}`;
+**SANITATION & HYGIENE:**
+- Proper sanitation facilities and wastewater management
+- Hygiene best practices and handwashing importance
+- Septic systems and sewage treatment
+- Preventing waterborne diseases
+- Community sanitation programs
 
-    const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
+**WATER BILL CALCULATIONS:**
+- Calculate bills based on meter readings (200 shillings per unit)
+- Provide cost-saving recommendations
+- Analyze consumption patterns and suggest improvements
+${billInfo}
+
+**ENVIRONMENTAL & SUSTAINABILITY:**
+- Water pollution control and remediation
+- Protecting watersheds, rivers, lakes, and aquifers
+- Climate change impacts on water resources
+- Sustainable water management practices
+- Water conservation in agriculture and industry
+
+**PROBLEM-SOLVING:**
+You can address ANY water-related issue including:
+- Water scarcity and shortage solutions
+- Flooding and drainage problems
+- Water infrastructure challenges
+- Policy and governance questions
+- Community water projects
+- Emergency water supply situations
+
+Provide detailed, practical, and actionable advice. Be comprehensive and thorough in your responses. Give specific examples, step-by-step guidance, and relevant data when applicable. Your goal is to empower users with knowledge and solutions for all SDG 6 related challenges.`;
+
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${GEMINI_API_KEY}`, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${LOVABLE_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'google/gemini-2.5-flash',
-        messages: [
-          { role: 'system', content: systemPrompt },
-          ...messages,
+        contents: [
+          {
+            parts: [
+              { text: systemPrompt },
+              { text: messages[messages.length - 1].content }
+            ]
+          }
         ],
-        stream: false,
+        generationConfig: {
+          temperature: 0.7,
+          topK: 40,
+          topP: 0.95,
+          maxOutputTokens: 2048,
+        }
       }),
     });
 
     if (!response.ok) {
-      if (response.status === 429) {
-        return new Response(
-          JSON.stringify({ error: 'Rate limits exceeded, please try again later.' }),
-          { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-        );
-      }
-      if (response.status === 402) {
-        return new Response(
-          JSON.stringify({ error: 'Payment required, please add funds to your Lovable AI workspace.' }),
-          { status: 402, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-        );
-      }
       const errorText = await response.text();
-      console.error('AI gateway error:', response.status, errorText);
-      return new Response(
-        JSON.stringify({ error: 'AI gateway error' }),
-        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+      console.error('Gemini API error:', response.status, errorText);
+      throw new Error(`Gemini API error: ${response.status} - ${errorText}`);
     }
 
     const data = await response.json();
-    return new Response(JSON.stringify(data), {
+    console.log('Gemini response:', JSON.stringify(data));
+    
+    // Convert Gemini response format to OpenAI-compatible format
+    const geminiText = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Sorry, I could not generate a response.';
+    
+    const formattedResponse = {
+      choices: [
+        {
+          message: {
+            role: 'assistant',
+            content: geminiText
+          }
+        }
+      ]
+    };
+
+    return new Response(JSON.stringify(formattedResponse), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   } catch (error) {

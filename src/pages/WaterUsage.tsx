@@ -326,7 +326,7 @@ const WaterUsage = () => {
                           <div className="border-t pt-4">
                             <div className="text-center space-y-1">
                               <p className="text-sm text-muted-foreground">Water Bill</p>
-                              <p className="text-3xl font-bold text-secondary">
+                              <p className="text-3xl font-bold text-red-600">
                                 KSh {waterBill?.toFixed(2)}
                               </p>
                               <p className="text-xs text-muted-foreground">
