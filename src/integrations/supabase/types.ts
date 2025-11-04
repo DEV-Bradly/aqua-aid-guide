@@ -71,6 +71,54 @@ export type Database = {
         }
         Relationships: []
       }
+      water_reports: {
+        Row: {
+          created_at: string
+          description: string
+          id: string
+          latitude: number | null
+          location_name: string | null
+          longitude: number | null
+          photo_url: string | null
+          report_type: string
+          resolved_at: string | null
+          status: string
+          title: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          id?: string
+          latitude?: number | null
+          location_name?: string | null
+          longitude?: number | null
+          photo_url?: string | null
+          report_type: string
+          resolved_at?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          id?: string
+          latitude?: number | null
+          location_name?: string | null
+          longitude?: number | null
+          photo_url?: string | null
+          report_type?: string
+          resolved_at?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       water_usage_records: {
         Row: {
           activity_type: string

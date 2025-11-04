@@ -10,9 +10,13 @@ import WaterUsage from "./pages/WaterUsage";
 import Chatbot from "./pages/Chatbot";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
+import ReportIssue from "./pages/ReportIssue";
+import WaterMap from "./pages/WaterMap";
+import WaterTips from "./pages/WaterTips";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import WaterAdvisorChat from "./components/WaterAdvisorChat";
+import WelcomeModal from "./components/WelcomeModal";
 
 const queryClient = new QueryClient();
 
@@ -29,12 +33,16 @@ const App = () => (
           <Route path="/education" element={<Education />} />
           <Route path="/water-usage" element={<WaterUsage />} />
           <Route path="/chatbot" element={<Chatbot />} />
+          <Route path="/report-issue" element={<ReportIssue />} />
+          <Route path="/water-map" element={<WaterMap />} />
+          <Route path="/water-tips" element={<WaterTips />} />
           <Route path="/auth" element={<Auth />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
         <WaterAdvisorChat />
+        <WelcomeModal />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
