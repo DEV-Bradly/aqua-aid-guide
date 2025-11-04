@@ -79,9 +79,19 @@ Q3 2025	Regional dashboard for analytics
  ## 🧭 How It Works ##
 
 1️⃣ Enter local water test data (pH, turbidity, temperature).
+
 2️⃣ The system analyzes and provides real-time feedback.
+
 3️⃣ Access educational content to understand your results.
+
 4️⃣ Track daily water usage through the calculator feature.
+
+ 5 ) reports e.g leaks, contamination feature 
+
+ 6) water map
+ 
+ 7) we aslo have chatbot that helps to claculate the bills of water at a given units given 
+ 
 
 ## 💼 Target Users ##
 
@@ -97,7 +107,7 @@ Q3 2025	Regional dashboard for analytics
  
 ```sh
 # Step 1: Clone the repository using the project's Git URL.
-git clone 
+git clone  https://github.com/DEV-Bradly/aqua-aid-guide.git
 
 # Step 2: Navigate to the project directory.
 cd aqua-aid-guide
