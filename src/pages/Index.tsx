@@ -42,8 +42,8 @@ const Index = () => {
       color: "text-secondary",
     },
     {
-      title: "Usage Calculator",
-      description: "Track and calculate your daily water consumption and bills",
+      title: "Usage Calculator & Bill Estimator",
+      description: "Calculate water usage from meter readings and get instant bill estimates at 200 KSh per unit",
       icon: Calculator,
       link: "/water-usage",
       color: "text-accent",
