@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Droplets, Home, BookOpen, Calculator, TestTube, LogOut, User } from "lucide-react";
+import { Droplets, Home, BookOpen, Calculator, TestTube, LogOut, User, MessageSquare, MapPin, AlertTriangle, Lightbulb } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -47,6 +47,10 @@ const Navigation = () => {
     { to: "/water-quality", icon: TestTube, label: "Water Quality" },
     { to: "/education", icon: BookOpen, label: "Education" },
     { to: "/water-usage", icon: Calculator, label: "Usage" },
+    { to: "/report-issue", icon: AlertTriangle, label: "Report Issue" },
+    { to: "/water-map", icon: MapPin, label: "Water Map" },
+    { to: "/water-tips", icon: Lightbulb, label: "Tips" },
+    { to: "/chatbot", icon: MessageSquare, label: "AI Chatbot" },
   ];
 
   return (

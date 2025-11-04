@@ -1,1 +1,7 @@
 project_id = "dprumhgxapbgaiyhnluf"
+<<<<<<< HEAD
+=======
+
+[functions.water-advisor-chat]
+verify_jwt = false
+>>>>>>> 46708479023d7660b1e7e2b45da2869eb36fb821

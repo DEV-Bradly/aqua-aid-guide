@@ -20,6 +20,7 @@ const WaterUsage = () => {
   const [meterBefore, setMeterBefore] = useState("");
   const [meterAfter, setMeterAfter] = useState("");
   const [meterUsage, setMeterUsage] = useState<number | null>(null);
+  const [waterBill, setWaterBill] = useState<number | null>(null);
   
   // Monthly tracking
   const [dailyLiters, setDailyLiters] = useState("");
@@ -62,9 +63,15 @@ const WaterUsage = () => {
         return;
       }
       
+      // Calculate units used
+      const unitsUsed = after - before;
       // Convert cubic meters to liters (1 m³ = 1000 L)
-      const usage = (after - before) * 1000;
+      const usage = unitsUsed * 1000;
+      // Calculate bill at 200 shillings per unit
+      const bill = unitsUsed * 200;
+      
       setMeterUsage(usage);
+      setWaterBill(bill);
     }
   };
 
@@ -306,14 +313,27 @@ const WaterUsage = () => {
                   {meterUsage !== null && (
                     <Card className="bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20">
                       <CardContent className="pt-6">
-                        <div className="text-center space-y-2">
-                          <p className="text-sm text-muted-foreground">Water Usage</p>
-                          <p className="text-4xl font-bold text-primary">
-                            {meterUsage.toFixed(2)} <span className="text-2xl">L</span>
-                          </p>
-                          <p className="text-xs text-muted-foreground">
-                            Difference: {((parseFloat(meterAfter) - parseFloat(meterBefore))).toFixed(3)} m³
-                          </p>
+                        <div className="space-y-4">
+                          <div className="text-center space-y-2">
+                            <p className="text-sm text-muted-foreground">Water Usage</p>
+                            <p className="text-4xl font-bold text-primary">
+                              {meterUsage.toFixed(2)} <span className="text-2xl">L</span>
+                            </p>
+                            <p className="text-xs text-muted-foreground">
+                              Units used: {((parseFloat(meterAfter) - parseFloat(meterBefore))).toFixed(3)} m³
+                            </p>
+                          </div>
+                          <div className="border-t pt-4">
+                            <div className="text-center space-y-1">
+                              <p className="text-sm text-muted-foreground">Water Bill</p>
+                              <p className="text-3xl font-bold text-red-600">
+                                KSh {waterBill?.toFixed(2)}
+                              </p>
+                              <p className="text-xs text-muted-foreground">
+                                @ 200 shillings per unit
+                              </p>
+                            </div>
+                          </div>
                         </div>
                       </CardContent>
                     </Card>

@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { Droplets, BookOpen, Calculator, BarChart3, Target, Users, Leaf } from "lucide-react";
+import { Droplets, BookOpen, Calculator, BarChart3, Target, Users, Leaf, AlertTriangle, MapPin, Lightbulb } from "lucide-react";
+import ShareButton from "@/components/ShareButton";
 
 const Index = () => {
   const features = [
@@ -13,6 +14,27 @@ const Index = () => {
       color: "text-primary",
     },
     {
+      title: "Report Water Issues",
+      description: "Submit reports about leaks, contamination, or other water problems in your area",
+      icon: AlertTriangle,
+      link: "/report-issue",
+      color: "text-destructive",
+    },
+    {
+      title: "Water Point Map",
+      description: "View reported water issues and their status across your community",
+      icon: MapPin,
+      link: "/water-map",
+      color: "text-secondary",
+    },
+    {
+      title: "Conservation Tips",
+      description: "Learn practical ways to save water and reduce consumption daily",
+      icon: Lightbulb,
+      link: "/water-tips",
+      color: "text-accent",
+    },
+    {
       title: "Education Hub",
       description: "Learn about SDG 6 and water treatment methods with available resources",
       icon: BookOpen,
@@ -20,8 +42,8 @@ const Index = () => {
       color: "text-secondary",
     },
     {
-      title: "Usage Calculator",
-      description: "Track and calculate your daily water consumption in liters",
+      title: "Usage Calculator & Bill Estimator",
+      description: "Calculate water usage from meter readings and get instant bill estimates at 200 KSh per unit",
       icon: Calculator,
       link: "/water-usage",
       color: "text-accent",
@@ -55,8 +77,13 @@ const Index = () => {
               <Link to="/water-quality">Start Testing Water</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
-              <Link to="/education">Learn More</Link>
+              <Link to="/report-issue">Report an Issue</Link>
             </Button>
+            <ShareButton 
+              variant="outline" 
+              size="lg"
+              className="bg-white/10 border-white/20 text-white hover:bg-white/20"
+            />
           </div>
         </div>
       </section>
@@ -88,7 +115,7 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <Card
                 key={index}
@@ -146,7 +173,8 @@ const Index = () => {
                   <h4 className="font-semibold text-foreground mb-2">How You Can Help</h4>
                   <ul className="space-y-1 text-sm">
                     <li>• Test local water sources</li>
-                    <li>• Share treatment methods</li>
+                    <li>• Report water issues</li>
+                    <li>• Share conservation tips</li>
                     <li>• Conserve water daily</li>
                     <li>• Spread awareness</li>
                   </ul>
